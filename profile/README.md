@@ -46,7 +46,7 @@ WordWaves là nền tảng học tập trực tuyến cung cấp lộ trình h�
 ## Công nghệ
 - Frontend: ``NextJS``, ``TypeScript``
 - Backend: ``Spring Boot``, ``Spring Cloud``, ``MySQL``, ``Redis``, ``Firebase``
-- Containerize: ``Docker`
+- Containerize: ``Docker``
 - Quản lý dự án: ``Git``, ``GitHub``
 - CI/CD: ``GitHub Actions``
 
