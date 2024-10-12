@@ -51,7 +51,207 @@ WordWaves là nền tảng học tập trực tuyến cung cấp lộ trình h�
 - CI/CD: ``GitHub Actions``
 
 ## Cấu trúc dự án
-```plaintext
+```bash
+C:.
+|   .gitignore
+|   Dockerfile
+|   HELP.md
+|   mvnw
+|   mvnw.cmd
+|   output.txt
+|   pom.xml
+|   README.md
+|   tree.txt
+|   
++---.github
+|   \---workflows
+|           pipeline-backend.yaml
+|           
++---.idea
+|       .gitignore
+|       compiler.xml
+|       encodings.xml
+|       jarRepositories.xml
+|       jpa-buddy.xml
+|       misc.xml
+|       uiDesigner.xml
+|       vcs.xml
+|       workspace.xml
+|       
++---.mvn
+|   \---wrapper
+|           maven-wrapper.properties
+|           
++---src
+|   +---main
+|   |   +---java
+|   |   |   \---com
+|   |   |       \---server
+|   |   |           \---wordwaves
+|   |   |               |   WordwavesApplication.java
+|   |   |               |   
+|   |   |               +---config
+|   |   |               |       ApplicationInitConfig.java
+|   |   |               |       CustomJwtDecoder.java
+|   |   |               |       FirebaseConfig.java
+|   |   |               |       JwtAuthenticationEntryPoint.java
+|   |   |               |       JwtTokenProvider.java
+|   |   |               |       PascalCaseNamingStrategy.java
+|   |   |               |       RedisConfig.java
+|   |   |               |       SecurityConfig.java
+|   |   |               |       
+|   |   |               +---constant
+|   |   |               |       PredefinedRole.java
+|   |   |               |       
+|   |   |               +---controller
+|   |   |               |       AuthenticationController.java
+|   |   |               |       FileUploadController.java
+|   |   |               |       TopicController.java
+|   |   |               |       UserController.java
+|   |   |               |       WordCollectionController.java
+|   |   |               |       WordController.java
+|   |   |               |       
+|   |   |               +---dto
+|   |   |               |   +---model
+|   |   |               |   |   \---mail
+|   |   |               |   |           RecipientModel.java
+|   |   |               |   |           SenderModel.java
+|   |   |               |   |           
+|   |   |               |   +---request
+|   |   |               |   |   +---auth
+|   |   |               |   |   |       AuthenticationRequest.java
+|   |   |               |   |   |       IntrospectRequest.java
+|   |   |               |   |   |       LogoutRequest.java
+|   |   |               |   |   |       RefreshTokenRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   +---common
+|   |   |               |   |   |       EmailRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   +---file
+|   |   |               |   |   |       FileUploadRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   +---user
+|   |   |               |   |   |       ForgotPasswordRequest.java
+|   |   |               |   |   |       ResetPasswordRequest.java
+|   |   |               |   |   |       UserCreationRequest.java
+|   |   |               |   |   |       UserUpdateRequest.java
+|   |   |               |   |   |       VerifyEmailRequest.java
+|   |   |               |   |   |       
+|   |   |               |   |   \---vocabulary
+|   |   |               |   |           TopicCreationRequest.java
+|   |   |               |   |           WordCollectionCreationRequest.java
+|   |   |               |   |           WordCreationRequest.java
+|   |   |               |   |           
+|   |   |               |   \---response
+|   |   |               |       +---auth
+|   |   |               |       |       AuthenticationResponse.java
+|   |   |               |       |       IntrospectResponse.java
+|   |   |               |       |       
+|   |   |               |       +---common
+|   |   |               |       |       ApiResponse.java
+|   |   |               |       |       BaseAuthorResponse.java
+|   |   |               |       |       BaseResponse.java
+|   |   |               |       |       EmailResponse.java
+|   |   |               |       |       Pagination.java
+|   |   |               |       |       PaginationInfo.java
+|   |   |               |       |       QueryOptions.java
+|   |   |               |       |       
+|   |   |               |       +---file
+|   |   |               |       |       FileUploadResponse.java
+|   |   |               |       |       
+|   |   |               |       +---user
+|   |   |               |       |       UserResponse.java
+|   |   |               |       |       
+|   |   |               |       \---vocabulary
+|   |   |               |               TopicResponse.java
+|   |   |               |               TopicsOfWordCollectionResponse.java
+|   |   |               |               WordCollectionResponse.java
+|   |   |               |               WordResponse.java
+|   |   |               |               WordsOfTopicResponse.java
+|   |   |               |               WordThumbnailResponse.java
+|   |   |               |               
+|   |   |               +---entity
+|   |   |               |   +---common
+|   |   |               |   |       BaseAuthor.java
+|   |   |               |   |       BaseEntity.java
+|   |   |               |   |       
+|   |   |               |   +---user
+|   |   |               |   |       Permission.java
+|   |   |               |   |       Role.java
+|   |   |               |   |       User.java
+|   |   |               |   |       
+|   |   |               |   \---vocabulary
+|   |   |               |           Topic.java
+|   |   |               |           Word.java
+|   |   |               |           WordCollection.java
+|   |   |               |           WordCollectionCategory.java
+|   |   |               |           
+|   |   |               +---exception
+|   |   |               |       AppException.java
+|   |   |               |       ErrorCode.java
+|   |   |               |       GlobalExceptionHandler.java
+|   |   |               |       
+|   |   |               +---mapper
+|   |   |               |       TopicMapper.java
+|   |   |               |       UserMapper.java
+|   |   |               |       WordCollectionMapper.java
+|   |   |               |       WordMapper.java
+|   |   |               |       
+|   |   |               +---repository
+|   |   |               |   |   PermissionRepository.java
+|   |   |               |   |   RoleRepository.java
+|   |   |               |   |   TopicRepository.java
+|   |   |               |   |   UserRepository.java
+|   |   |               |   |   WordCollectionCategoryRepository.java
+|   |   |               |   |   WordCollectionRepository.java
+|   |   |               |   |   WordRepository.java
+|   |   |               |   |   
+|   |   |               |   \---httpclient
+|   |   |               |           DictionaryClient.java
+|   |   |               |           EmailClient.java
+|   |   |               |           ImageClient.java
+|   |   |               |           
+|   |   |               +---service
+|   |   |               |   |   AuthenticationService.java
+|   |   |               |   |   BaseRedisService.java
+|   |   |               |   |   EmailService.java
+|   |   |               |   |   FirebaseStorageService.java
+|   |   |               |   |   TokenService.java
+|   |   |               |   |   TopicService.java
+|   |   |               |   |   UserService.java
+|   |   |               |   |   WordCollectionService.java
+|   |   |               |   |   WordService.java
+|   |   |               |   |   
+|   |   |               |   \---implement
+|   |   |               |           AuthenticationServiceImp.java
+|   |   |               |           BaseRedisServiceImp.java
+|   |   |               |           EmailServiceImp.java
+|   |   |               |           FirebaseStorageServiceImp.java
+|   |   |               |           TokenServiceImp.java
+|   |   |               |           TopicServiceImp.java
+|   |   |               |           UserServiceImp.java
+|   |   |               |           WordCollectionServiceImp.java
+|   |   |               |           WordServiceImp.java
+|   |   |               |           
+|   |   |               \---utils
+|   |   |                       MyStringUtils.java
+|   |   |                       
+|   |   \---resources
+|   |       |   application-prod.yaml
+|   |       |   application.yaml
+|   |       |   firebase-credentials.json
+|   |       |   
+|   |       +---static
+|   |       \---templates
+|   |               forgot-password-template.html
+|   |               register-template.html
+|   |               
+|   \---test
+|       \---java
+|           \---com
+|               \---server
+|                   \---wordwaves
+|                           WordwavesApplicationTests.java
 
 
 ```
