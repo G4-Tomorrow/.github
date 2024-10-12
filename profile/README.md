@@ -51,6 +51,12 @@ WordWaves là nền tảng học tập trực tuyến cung cấp lộ trình h�
 - CI/CD: ``GitHub Actions``
 
 ## Cấu trúc dự án
+- Frontend
+```bash
+
+```
+
+- Backend
 ```bash
 C:.
 |   .gitignore
